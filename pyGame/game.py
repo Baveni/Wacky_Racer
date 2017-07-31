@@ -26,6 +26,10 @@ clock = pygame.time.Clock()
 
 carImg = pygame.image.load('racecar.png')
 
+pause = False
+
+# crash = True
+
 
 def things_dodged(count):
     font = pygame.font.SysFont("comicsansms", 25)
@@ -60,7 +64,26 @@ def message_display(text):
 
 
 def crash():
-    message_display('You Crashed')
+
+
+
+    largeText = pygame.font.SysFont('comicsansms', 115)
+    TextSurf, TextRect = text_objects('You Crashed!', largeText)
+    TextRect.center = ((display_width / 2), (display_height / 2))
+    gameDisplay.blit(TextSurf, TextRect)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+        # button("GO!", 150, 450, 100, 50, bright_green, green, game_loop)
+        button("Play Again?", 150, 450, 150, 50, green, bright_green, game_loop)
+        button("QUIT!", 550, 450, 100, 50, red, bright_red, quitgame)
+
+        pygame.display.update()
+        clock.tick(15)
 
 
 def button(msg, x, y, w, h, ic, ac, action=None):
@@ -84,6 +107,37 @@ def button(msg, x, y, w, h, ic, ac, action=None):
 def quitgame():
     pygame.quit()
     quit()
+
+
+def unpause():
+    global pause
+    pause = False
+
+def paused():
+
+
+    # gameDisplay.fill(white)
+    largeText = pygame.font.SysFont('comicsansms', 115)
+    TextSurf, TextRect = text_objects('Paused', largeText)
+    TextRect.center = ((display_width / 2), (display_height / 2))
+    gameDisplay.blit(TextSurf, TextRect)
+
+
+    while pause:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+
+
+        # button("GO!", 150, 450, 100, 50, bright_green, green, game_loop)
+        button("Continue", 150, 450, 100, 50, green, bright_green, unpause)
+
+        button("QUIT!", 550, 450, 100, 50, red, bright_red, quitgame)
+
+        pygame.display.update()
+        clock.tick(15)
 
 
 def game_intro():
@@ -111,6 +165,9 @@ def game_intro():
 
 
 def game_loop():
+
+    global pause
+
     x = (display_width * 0.45)
     y = (display_height * 0.8)
 
@@ -137,6 +194,9 @@ def game_loop():
                     x_change = -5
                 if event.key == pygame.K_RIGHT:
                     x_change = 5
+                if event.key == pygame.K_p:
+                    pause = True
+                    paused()
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
