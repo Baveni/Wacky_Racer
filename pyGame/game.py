@@ -1,5 +1,4 @@
 import pygame
-import time
 import random
 
 pygame.init()
@@ -67,8 +66,6 @@ def text_objects(text, font):
 
 def crash():
 
-
-
     largeText = pygame.font.SysFont('comicsansms', 115)
     TextSurf, TextRect = text_objects('You Crashed!', largeText)
     TextRect.center = ((display_width / 2), (display_height / 2))
@@ -131,8 +128,6 @@ def paused():
                 pygame.quit()
                 quit()
 
-
-
         # button("GO!", 150, 450, 100, 50, bright_green, green, game_loop)
         button("Continue", 150, 450, 100, 50, green, bright_green, unpause)
 
@@ -193,9 +188,9 @@ def game_loop():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    x_change = -5
+                    x_change = -10
                 if event.key == pygame.K_RIGHT:
-                    x_change = 5
+                    x_change = 10
                 if event.key == pygame.K_p:
                     pause = True
                     paused()
