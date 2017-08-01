@@ -31,6 +31,11 @@ pause = False
 
 # crash = True
 
+def p_for_paused():
+    font = pygame.font.SysFont("comicsansms", 25)
+    text = font.render("P for pause", True, black)
+    gameDisplay.blit(text, (650, 0))
+
 
 def things_dodged(count):
     font = pygame.font.SysFont("comicsansms", 25)
@@ -209,6 +214,7 @@ def game_loop():
 
         car(x, y)
         things_dodged(dodged)
+        p_for_paused()
 
         if x > display_width - car_width or x < 0:
             crash()
