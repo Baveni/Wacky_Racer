@@ -31,6 +31,24 @@ pause = False
 
 # crash = True
 
+
+def menu_text():
+
+    largeText = pygame.font.SysFont('comicsansms', 50)
+    TextSurf, TextRect = text_objects('HAHA There is no menu!', largeText)
+    TextRect.center = ((display_width / 2), (display_height / 2))
+    gameDisplay.blit(TextSurf, TextRect)
+
+    pygame.display.update()
+    clock.tick(1)
+
+
+def m_for_menu():
+    font = pygame.font.SysFont("comicsansms", 25)
+    text = font.render("M for menu", True, black)
+    gameDisplay.blit(text, (650, 30))
+
+
 def p_for_paused():
     font = pygame.font.SysFont("comicsansms", 25)
     text = font.render("P for pause", True, black)
@@ -199,6 +217,8 @@ def game_loop():
                 if event.key == pygame.K_p:
                     pause = True
                     paused()
+                if event.key == pygame.K_m:
+                    menu_text()
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
@@ -215,6 +235,7 @@ def game_loop():
         car(x, y)
         things_dodged(dodged)
         p_for_paused()
+        m_for_menu()
 
         if x > display_width - car_width or x < 0:
             crash()
