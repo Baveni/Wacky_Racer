@@ -26,6 +26,8 @@ clock = pygame.time.Clock()
 
 carImg = pygame.image.load('racecar.png')
 
+pygame.display.set_icon(carImg)
+
 pause = False
 
 # crash = True
@@ -50,17 +52,17 @@ def text_objects(text, font):
     return textSurface, textSurface.get_rect()
 
 
-def message_display(text):
-    largeText = pygame.font.SysFont('comicsansms', 115)
-    TextSurf, TextRect = text_objects(text, largeText)
-    TextRect.center = ((display_width/2), (display_height/2))
-    gameDisplay.blit(TextSurf, TextRect)
-
-    pygame.display.update()
-
-    time.sleep(3)
-
-    game_loop()
+# def message_display(text):
+#     largeText = pygame.font.SysFont('comicsansms', 115)
+#     TextSurf, TextRect = text_objects(text, largeText)
+#     TextRect.center = ((display_width/2), (display_height/2))
+#     gameDisplay.blit(TextSurf, TextRect)
+#
+#     pygame.display.update()
+#
+#     time.sleep(3)
+#
+#     game_loop()
 
 
 def crash():
@@ -221,7 +223,7 @@ def game_loop():
             thing_startx = random.randrange(0, display_width)
             dodged += 1
             thing_speed += 1
-            #thing_width += (dodged * 1,2)
+            thing_width += (dodged * 1.1)
 
         if y < thing_starty+thing_height:
             if x > thing_startx and x < thing_startx + thing_width or x + car_width > thing_startx and x + car_width < thing_startx + thing_width:
