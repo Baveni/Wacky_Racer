@@ -228,7 +228,7 @@ def game_loop():
 
         gameDisplay.fill(white)
 
-        #things(thingx, thingy, thingw, thingh, color)
+        # things(thingx, thingy, thingw, thingh, color)
         things(thing_startx, thing_starty, thing_width, thing_height, block_color)
         thing_starty += thing_speed
 
